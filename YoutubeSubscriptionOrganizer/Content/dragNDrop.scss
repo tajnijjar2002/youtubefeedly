@@ -1,0 +1,51 @@
+﻿/*DRAG AND DROP try*/
+
+.dragNdrop
+{
+    border:1px solid green;
+    height:1000px;
+    width:100%;
+    margin:0;
+    padding:0;
+
+    &>.container-fluid
+    {
+        .allSubscriptions
+        {
+            border: 1px solid orange;
+            float: left;
+            width:300px;
+
+            ul
+            {
+                list-style-type: none;
+                padding: 0;
+               
+
+                li
+                {
+                    cursor: move;
+                }
+            }
+        }
+
+        .dropDivsContainer
+        {
+            .dropDiv
+            {
+                height: 250px;
+                width: 250px;
+                border: 1px solid red;
+                float: left;
+                margin: 0px 30px;
+
+                ul
+                {
+                    list-style-type: none !important;
+                    padding:0;
+                    margin:0;
+                }
+            }
+        }
+    }
+}

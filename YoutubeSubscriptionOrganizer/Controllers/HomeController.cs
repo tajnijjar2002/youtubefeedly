@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using YoutubeSubscriptionOrganizer.Core.Models;
 
 namespace YoutubeSubscriptionOrganizer.Controllers
 {
@@ -10,7 +11,10 @@ namespace YoutubeSubscriptionOrganizer.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            XMLFile file = new XMLFile();
+            List<YoutubeChannel> youtubeChannels = file.ReadXmlFile();
+
+            return View(youtubeChannels);
         }
 
         public ActionResult About()

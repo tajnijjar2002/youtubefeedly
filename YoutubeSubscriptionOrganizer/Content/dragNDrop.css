@@ -1,0 +1,27 @@
+﻿/*DRAG AND DROP try*/
+.dragNdrop {
+  border: 1px solid green;
+  height: 1000px;
+  width: 100%;
+  margin: 0;
+  padding: 0; }
+  .dragNdrop > .container-fluid .allSubscriptions {
+    border: 1px solid orange;
+    float: left;
+    width: 300px; }
+    .dragNdrop > .container-fluid .allSubscriptions ul {
+      list-style-type: none;
+      padding: 0; }
+      .dragNdrop > .container-fluid .allSubscriptions ul li {
+        cursor: move; }
+  .dragNdrop > .container-fluid .dropDivsContainer .dropDiv {
+    height: 250px;
+    width: 250px;
+    border: 1px solid red;
+    float: left;
+    margin: 0px 30px; }
+    .dragNdrop > .container-fluid .dropDivsContainer .dropDiv ul {
+      list-style-type: none !important;
+      padding: 0;
+      margin: 0; }
+
