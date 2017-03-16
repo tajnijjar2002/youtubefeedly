@@ -172,17 +172,22 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Core\Dtos\YoutubeChannelDto.cs" />
     <Compile Include="Core\IUnitOfWork.cs" />
+    <Compile Include="Core\Models\ApplicationDbContext.cs" />
     <Compile Include="Core\Models\XMLFile.cs" />
     <Compile Include="Core\Models\YoutubeChannel.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Core\Models\AccountViewModels.cs" />
-    <Compile Include="Core\Models\IdentityModels.cs" />
+    <Compile Include="Core\Models\ApplicationUser.cs" />
     <Compile Include="Core\Models\ManageViewModels.cs" />
     <Compile Include="Migrations\201703080033114_InitialCreate.cs" />
     <Compile Include="Migrations\201703080033114_InitialCreate.Designer.cs">
       <DependentUpon>201703080033114_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703160012311_AddedXmlFileAndYoutubeChannelModels.cs" />
+    <Compile Include="Migrations\201703160012311_AddedXmlFileAndYoutubeChannelModels.Designer.cs">
+      <DependentUpon>201703160012311_AddedXmlFileAndYoutubeChannelModels.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -284,6 +289,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201703080033114_InitialCreate.resx">
       <DependentUpon>201703080033114_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703160012311_AddedXmlFileAndYoutubeChannelModels.resx">
+      <DependentUpon>201703160012311_AddedXmlFileAndYoutubeChannelModels.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
