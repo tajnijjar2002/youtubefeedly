@@ -9,6 +9,7 @@ namespace YoutubeSubscriptionOrganizer.Models
 
         public DbSet<YoutubeChannel> YoutubeChannels { get; set; }
         public DbSet<XMLFile> XmlFiles { get; set; }
+        public DbSet<ChannelGroup> ChannelGroups { get; set; }
 
 
 

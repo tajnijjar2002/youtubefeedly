@@ -1,10 +1,12 @@
-﻿body {
+﻿body
+{
     padding-top: 50px;
     padding-bottom: 20px;
 }
 
 /* Set padding to keep content from hitting the edges */
-.body-content {
+.body-content
+{
     padding-left: 15px;
     padding-right: 15px;
 }
@@ -12,15 +14,93 @@
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
 */
-.dl-horizontal dt {
+.dl-horizontal dt
+{
     white-space: normal;
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
 input,
 select,
-textarea {
+textarea
+{
     max-width: 280px;
 }
 
 
+//***********************************//
+//***********CUSTOM STYLES***********//
+//***********************************//
+
+
+
+input#fileUpload
+{
+    display: none !important;
+}
+
+
+
+
+/*INDEX STYLE*/
+
+.channelGroupName
+{
+    cursor: pointer;
+}
+
+.allVideosContainer
+{
+
+
+
+
+    .channelVideosList
+    {
+        .row
+        {
+            .channelVideos
+            {
+                .singleVideo
+                {
+                    height:175px;
+
+                    > img
+                    {
+                        display:inline-block;
+                    }
+
+                    .videoTitle
+                    {
+                        display:block;
+                        color:#167ac6;
+                        font-weight:bold;
+                        font-size:13px;
+                        line-height:17px;
+                        min-height:17px;
+                        max-height:34px;
+                        text-overflow:ellipsis;
+                        white-space:nowrap;
+                        overflow:hidden;
+                        -webkit-line-clamp: 2;
+                    }
+
+                    .channelTitle
+                    {
+                        display:block;
+                        font-size:11px;
+                        line-height:14px;
+                        color:#767676;
+                    }
+
+                    .datePublished
+                    {
+                        font-size:11px;
+                        line-height:14px;
+                        color:#767676;
+                    }
+                }
+            }
+        }
+    }
+}

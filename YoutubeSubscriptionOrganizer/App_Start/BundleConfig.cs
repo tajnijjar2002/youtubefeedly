@@ -9,7 +9,8 @@ namespace YoutubeSubscriptionOrganizer
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"
+                        "~/Scripts/jquery-{version}.js",
+                        "~/Scripts/CustomScripts/main.js"
                         //"~/Scripts/angular.min.js"
                         //"~/Scripts/angular-route.js"
                         ));

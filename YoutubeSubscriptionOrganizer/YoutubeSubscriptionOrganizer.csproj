@@ -52,12 +52,24 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -167,14 +179,21 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Api\ChannelController.cs" />
+    <Compile Include="Controllers\Api\UpdateChannelGroupController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Core\Dtos\YoutubeChannelDto.cs" />
     <Compile Include="Core\IUnitOfWork.cs" />
     <Compile Include="Core\Models\ApplicationDbContext.cs" />
+    <Compile Include="Core\Models\ChannelGroup.cs" />
     <Compile Include="Core\Models\XMLFile.cs" />
     <Compile Include="Core\Models\YoutubeChannel.cs" />
+    <Compile Include="Core\ViewModels\CreateNewChannelGroupViewModel.cs" />
+    <Compile Include="Core\ViewModels\HomePageViewModel.cs" />
+    <Compile Include="Core\ViewModels\UpdateYoutubeChannelGroupViewModel.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -188,6 +207,34 @@
     <Compile Include="Migrations\201703160012311_AddedXmlFileAndYoutubeChannelModels.cs" />
     <Compile Include="Migrations\201703160012311_AddedXmlFileAndYoutubeChannelModels.Designer.cs">
       <DependentUpon>201703160012311_AddedXmlFileAndYoutubeChannelModels.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703162239362_AddedUserPropertyToXmlFile.cs" />
+    <Compile Include="Migrations\201703162239362_AddedUserPropertyToXmlFile.Designer.cs">
+      <DependentUpon>201703162239362_AddedUserPropertyToXmlFile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703162247027_AddedNameAndPathPropertiesToXmlFile.cs" />
+    <Compile Include="Migrations\201703162247027_AddedNameAndPathPropertiesToXmlFile.Designer.cs">
+      <DependentUpon>201703162247027_AddedNameAndPathPropertiesToXmlFile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703170031244_AddedUserPropertyToYoutubeChannel.cs" />
+    <Compile Include="Migrations\201703170031244_AddedUserPropertyToYoutubeChannel.Designer.cs">
+      <DependentUpon>201703170031244_AddedUserPropertyToYoutubeChannel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703190002071_AddedChannelGroup.cs" />
+    <Compile Include="Migrations\201703190002071_AddedChannelGroup.Designer.cs">
+      <DependentUpon>201703190002071_AddedChannelGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703190406512_AddDummyChannelGroup.cs" />
+    <Compile Include="Migrations\201703190406512_AddDummyChannelGroup.Designer.cs">
+      <DependentUpon>201703190406512_AddDummyChannelGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703190444436_AddDummyRecordForXmlFiles.cs" />
+    <Compile Include="Migrations\201703190444436_AddDummyRecordForXmlFiles.Designer.cs">
+      <DependentUpon>201703190444436_AddDummyRecordForXmlFiles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703282311192_AddedUserToChannelGroup.cs" />
+    <Compile Include="Migrations\201703282311192_AddedUserToChannelGroup.Designer.cs">
+      <DependentUpon>201703282311192_AddedUserToChannelGroup.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -221,9 +268,11 @@
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\app\app.js" />
     <Content Include="Scripts\app\DragDropController.js" />
+    <Content Include="Scripts\app\YoutubeController.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <None Include="Properties\PublishProfiles\demo.pubxml" />
+    <None Include="Properties\PublishProfiles\yousubman.com - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\YouSubMan.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -232,13 +281,17 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\CustomScripts\dragNDrop.js" />
+    <Content Include="Scripts\CustomScripts\main.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\Services\ChannelsFactory.js" />
+    <Content Include="Scripts\Services\YoutubeFactory.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="subscription_manager.xml" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -272,10 +325,13 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Home\ManageChannels.cshtml" />
+    <Content Include="Views\Home\_FetchYoutubeChannelsByChannelId.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Core\Repositories\" />
+    <Folder Include="Files\" />
     <Folder Include="Persistence\Repositories\" />
   </ItemGroup>
   <ItemGroup>
@@ -293,6 +349,29 @@
     <EmbeddedResource Include="Migrations\201703160012311_AddedXmlFileAndYoutubeChannelModels.resx">
       <DependentUpon>201703160012311_AddedXmlFileAndYoutubeChannelModels.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703162239362_AddedUserPropertyToXmlFile.resx">
+      <DependentUpon>201703162239362_AddedUserPropertyToXmlFile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703162247027_AddedNameAndPathPropertiesToXmlFile.resx">
+      <DependentUpon>201703162247027_AddedNameAndPathPropertiesToXmlFile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703170031244_AddedUserPropertyToYoutubeChannel.resx">
+      <DependentUpon>201703170031244_AddedUserPropertyToYoutubeChannel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703190002071_AddedChannelGroup.resx">
+      <DependentUpon>201703190002071_AddedChannelGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703190406512_AddDummyChannelGroup.resx">
+      <DependentUpon>201703190406512_AddDummyChannelGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703190441508_RemovedXMLFileForeignKeyFromYoutubeChannel.cs.resx" />
+    <EmbeddedResource Include="Migrations\201703190444436_AddDummyRecordForXmlFiles.resx">
+      <DependentUpon>201703190444436_AddDummyRecordForXmlFiles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703282311192_AddedUserToChannelGroup.resx">
+      <DependentUpon>201703282311192_AddedUserToChannelGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703290858499_RenamedChannelUrlToChannelIdInYoutubeChannel.cs.resx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

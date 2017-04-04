@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using YoutubeSubscriptionOrganizer.Models;
 
 namespace YoutubeSubscriptionOrganizer.Core.Models
 {
@@ -16,8 +17,19 @@ namespace YoutubeSubscriptionOrganizer.Core.Models
         public string Title { get; set; }
         public string XmlUrl { get; set; }
 
-        private string _channelUrl;
+        public ApplicationUser User { get; set; }
+        public string UserId { get; set; }
 
+        public int XmlFileId { get; set; }
+        public XMLFile XmlFile { get; set; }
+
+
+        public int ChannelGroupId { get; set; }
+        public ChannelGroup ChannelGroup { get; set; }
+
+
+
+        private string _channelUrl;
         public string ChannelUrl
         {
             get
@@ -32,10 +44,7 @@ namespace YoutubeSubscriptionOrganizer.Core.Models
         }
 
 
-        //public string ChannelUrl
-        //{
-        //    get; private set;
-        //}
+
 
 
         public string SetChannelUrl()
